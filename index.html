@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" type="text/css">
+
+    <div id="chart"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+
+    <script>
+        c3.chart.internal.fn.selectPath = function (target, d) {
+            var rubid = Number(d.id.substring(d.id.length - 1));
+            if (rubid == d.index) {
+                var brightness = 0;
+            } else {
+                var brightness = 1.75;
+            }
+            var $$ = this;
+            $$.config.data_onselected.call($$, d, target.node());
+            target.transition().duration(100)
+                .style("fill", function () { return $$.d3.rgb($$.color(d)).brighter(brightness); });
+        };
+        var chart = c3.generate({
+            bindto: "#chart",
+            data: {
+                x: 'x',
+                columns: [
+                    ['x', 'Healthy', 'Moderate', 'High'],
+                    ['inrub0',  500,   30,  20],
+                    ['outrub0',   0, -150, -50],
+                    ['inrub1' , 150,  200,  30],
+                    ['outrub1', -30,    0, -25],
+                    ['inrub2' ,  50,   25, 150],
+                    ['outrub2', -20,  -30,   0]
+                ],
+                //rows: [
+                //    ['inrub0', 'inrub1', 'inrub2', 'outrub0', 'outrub1', 'outrub2'],
+                //    [500, 150, 50, 0, -30, -20],
+                //    [30, 200, 25, -150, 0, -30],
+                //    [20, 30, 150, -50, -25, 0]
+                //],
+                type: 'bar',
+                //groups: [
+                //    ['inrub0', 'inrub1', 'inrub2', 'outrub0', 'outrub1', 'outrub2']
+                //],
+                groups: [
+                    ['inrub0', 'outrub0', 'inrub1', 'outrub1', 'inrub2', 'outrub2']
+                ],
+                names: {
+                    inrub0: '+ Healthy',
+                    inrub1: '+ Moderate',
+                    inrub2: '+ High',
+                    outrub0: '- Healthy',
+                    outrub1: '- Moderate',
+                    outrub2: '- High'
+                },
+                selection: {
+                    enabled: true,
+                    multiple: true
+                },
+                onclick: function (d, element) {
+                    console.log(d);
+                    //console.log(element);
+                    var rubid = Number(d.id.substring(d.id.length - 1));
+                    if (rubid == d.index) {
+                      return;
+                    }
+                    var refid = (d.id.substring(0, 1) == "o" ? "inrub" : "outrub");
+                    refid = refid + d.index;
+                    var refindex = Number(d.id.substring(d.id.length - 1));
+                    if (chart.selected(refid).length != 0) {
+                      chart.unselect([d.id], [d.index]);
+                      chart.unselect([refid], [refindex]);
+                    }else {
+                      chart.select([d.id], [d.index], true);
+                      chart.select([refid], [refindex], false);
+                    }
+                }
+            },
+            axis: {
+                x: {
+                    type: 'category'
+                }
+            },
+            //color: {
+            //    pattern: ['blue', 'green', 'yellow', 'blue', 'green', 'yellow']
+            //},
+            color: {
+                pattern: ['#6da900', '#6da900', '#f2700d', '#f2700d', '#a90000', '#a90000']
+            },
+            grid: {
+                y: {
+                  lines: [{value:0}]
+                }
+            },
+            tooltip: {
+              show: true,
+              grouped: false
+            }
+        });
+    </script>
+  </body>
+</html>
