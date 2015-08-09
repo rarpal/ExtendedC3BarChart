@@ -16,14 +16,26 @@
             var rubid = Number(d.id.substring(d.id.length - 1));
             if (rubid == d.index) {
                 var brightness = 0;
+                return;
             } else {
-                var brightness = 1.75;
+                var brightness = 0.75;
             }
             var $$ = this;
             $$.config.data_onselected.call($$, d, target.node());
             target.transition().duration(100)
-                .style("fill", function () { return $$.d3.rgb($$.color(d)).brighter(brightness); });
+              .style({'stroke': 'black', 'stroke-width': 4, 'fill': function() {return $$.d3.rgb($$.color(d)).brighter(brightness);} });
+                //.style("fill", function () {
+                //  return $$.d3.rgb($$.color(d)).brighter(brightness);
+                //});
         };
+        c3.chart.internal.fn.unselectPath = function (target, d) {
+            var $$ = this;
+            $$.config.data_onunselected.call($$, d, target.node());
+            target.transition().duration(100)
+              .style({'stroke': function () { return $$.color(d); }, 'stroke-width': 1, 'fill': function () { return $$.color(d); } });
+              //.style("fill", function () { return $$.color(d); });
+        };
+
         var chart = c3.generate({
             bindto: "#chart",
             data: {
@@ -37,16 +49,8 @@
                     ['inrub2' ,  50,   25, 150],
                     ['outrub2', -20,  -30,   0]
                 ],
-                //rows: [
-                //    ['inrub0', 'inrub1', 'inrub2', 'outrub0', 'outrub1', 'outrub2'],
-                //    [500, 150, 50, 0, -30, -20],
-                //    [30, 200, 25, -150, 0, -30],
-                //    [20, 30, 150, -50, -25, 0]
-                //],
                 type: 'bar',
-                //groups: [
-                //    ['inrub0', 'inrub1', 'inrub2', 'outrub0', 'outrub1', 'outrub2']
-                //],
+                labels: true,
                 groups: [
                     ['inrub0', 'outrub0', 'inrub1', 'outrub1', 'inrub2', 'outrub2']
                 ],
@@ -86,9 +90,6 @@
                     type: 'category'
                 }
             },
-            //color: {
-            //    pattern: ['blue', 'green', 'yellow', 'blue', 'green', 'yellow']
-            //},
             color: {
                 pattern: ['#6da900', '#6da900', '#f2700d', '#f2700d', '#a90000', '#a90000']
             },
