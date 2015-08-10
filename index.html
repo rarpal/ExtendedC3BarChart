@@ -15,11 +15,9 @@
         c3.chart.internal.fn.selectPath = function (target, d) {
             var rubid = Number(d.id.substring(d.id.length - 1));
             if (rubid == d.index) {
-                var brightness = 0;
                 return;
-            } else {
-                var brightness = 0.75;
             }
+            var brightness = 0.75;
             var $$ = this;
             $$.config.data_onselected.call($$, d, target.node());
             target.transition().duration(100)
@@ -36,73 +34,82 @@
               //.style("fill", function () { return $$.color(d); });
         };
 
-        var chart = c3.generate({
-            bindto: "#chart",
-            data: {
-                x: 'x',
-                columns: [
-                    ['x', 'Healthy', 'Moderate', 'High'],
-                    ['inrub0',  500,   30,  20],
-                    ['outrub0',   0, -150, -50],
-                    ['inrub1' , 150,  200,  30],
-                    ['outrub1', -30,    0, -25],
-                    ['inrub2' ,  50,   25, 150],
-                    ['outrub2', -20,  -30,   0]
-                ],
-                type: 'bar',
-                labels: true,
-                groups: [
-                    ['inrub0', 'outrub0', 'inrub1', 'outrub1', 'inrub2', 'outrub2']
-                ],
-                names: {
-                    inrub0: '+ Healthy',
-                    inrub1: '+ Moderate',
-                    inrub2: '+ High',
-                    outrub0: '- Healthy',
-                    outrub1: '- Moderate',
-                    outrub2: '- High'
-                },
-                selection: {
-                    enabled: true,
-                    multiple: true
-                },
-                onclick: function (d, element) {
-                    console.log(d);
-                    //console.log(element);
-                    var rubid = Number(d.id.substring(d.id.length - 1));
-                    if (rubid == d.index) {
-                      return;
+        var Chart = c3.generate({
+                bindto: "#chart",
+                size: {width: 1500, height: 900},
+                data: {
+                    json: [
+                        {RubGroup:	'Non-users'	,INRUB0:	13822	,OUTRUB0:	0	,INRUB1:	115	,OUTRUB1:	-8027	,INRUB2:	1	,OUTRUB2:	-1085	,INRUB3:	2	,OUTRUB3:	-3784	,INRUB4:	0	,OUTRUB4:	-706	,INRUB5:	0	,OUTRUB5:	-220},
+                        {RubGroup:	'Healthy'	,INRUB0:	8027	,OUTRUB0:	-115	,INRUB1:	3410	,OUTRUB1:	0	,INRUB2:	0	,OUTRUB2:	-613	,INRUB3:	4	,OUTRUB3:	-2174	,INRUB4:	0	,OUTRUB4:	-382	,INRUB5:	0	,OUTRUB5:	-126},
+                        {RubGroup:	'Low'	,INRUB0:	1085	,OUTRUB0:	-1	,INRUB1:	613	,OUTRUB1:	0	,INRUB2:	2876	,OUTRUB2:	0	,INRUB3:	56	,OUTRUB3:	-1970	,INRUB4:	0	,OUTRUB4:	-667	,INRUB5:	0	,OUTRUB5:	-238},
+                        {RubGroup:	'Moderate'	,INRUB0:	3784	,OUTRUB0:	-2	,INRUB1:	2174	,OUTRUB1:	-4	,INRUB2:	1970	,OUTRUB2:	-56	,INRUB3:	1423	,OUTRUB3:	0	,INRUB4:	4	,OUTRUB4:	-1048	,INRUB5:	0	,OUTRUB5:	-313},
+                        {RubGroup:	'High'	,INRUB0:	706	,OUTRUB0:	0	,INRUB1:	382	,OUTRUB1:	0	,INRUB2:	667	,OUTRUB2:	0	,INRUB3:	1048	,OUTRUB3:	-4	,INRUB4:	313	,OUTRUB4:	0	,INRUB5:	32	,OUTRUB5:	-309},
+                        {RubGroup:	'Very High'	,INRUB0:	220	,OUTRUB0:	0	,INRUB1:	126	,OUTRUB1:	0	,INRUB2:	238	,OUTRUB2:	0	,INRUB3:	313	,OUTRUB3:	0	,INRUB4:	309	,OUTRUB4:	-32	,INRUB5:	32	,OUTRUB5:	0}
+                    ],
+                    //json: eval(data.d),
+                    keys: {
+                        x: 'RubGroup',
+                        value: ['INRUB0', 'OUTRUB0', 'INRUB1', 'OUTRUB1', 'INRUB2', 'OUTRUB2', 'INRUB3', 'OUTRUB3', 'INRUB4', 'OUTRUB4', 'INRUB5', 'OUTRUB5']
+                    },
+                    type: 'bar',
+                    labels: true,
+                    groups: [
+                        ['INRUB0', 'OUTRUB0', 'INRUB1', 'OUTRUB1', 'INRUB2', 'OUTRUB2', 'INRUB3', 'OUTRUB3', 'INRUB4', 'OUTRUB4', 'INRUB5', 'OUTRUB5']
+                    ],
+                    names: {
+                        INRUB0: '+ Non-users',
+                        INRUB1: '+ Healthy',
+                        INRUB2: '+ Low',
+                        INRUB3: '+ Moderate',
+                        INRUB4: '+ High',
+                        INRUB5: '+ Very High',
+                        OUTRUB0: '- Non-users',
+                        OUTRUB1: '- Healthy',
+                        OUTRUB2: '- Low',
+                        OUTRUB3: '- Moderate',
+                        OUTRUB4: '- High',
+                        OUTRUB5: '- Very High',
+                    },
+                    selection: {
+                        enabled: true,
+                        multiple: true
+                    },
+                    onclick: function (d, element) {
+                        console.log(d);
+                        var rubid = Number(d.id.substring(d.id.length - 1));
+                        if (rubid == d.index) {
+                            return;
+                        }
+                        var refid = (d.id.substring(0, 1) == "O" ? "INRUB" : "OUTRUB");
+                        refid = refid + d.index;
+                        var refindex = Number(d.id.substring(d.id.length - 1));
+                        if (Chart.selected(refid).length != 0) {
+                            Chart.unselect([d.id], [d.index]);
+                            Chart.unselect([refid], [refindex]);
+                        } else {
+                            Chart.select([d.id], [d.index], true);
+                            Chart.select([refid], [refindex], false);
+                        }
                     }
-                    var refid = (d.id.substring(0, 1) == "o" ? "inrub" : "outrub");
-                    refid = refid + d.index;
-                    var refindex = Number(d.id.substring(d.id.length - 1));
-                    if (chart.selected(refid).length != 0) {
-                      chart.unselect([d.id], [d.index]);
-                      chart.unselect([refid], [refindex]);
-                    }else {
-                      chart.select([d.id], [d.index], true);
-                      chart.select([refid], [refindex], false);
+                },
+                axis: {
+                    x: {
+                        type: 'category'
                     }
+                },
+                color: {
+                    pattern: ['#6894CA', '#6894CA', '#B1CA7D', '#B1CA7D', '#FFFF8C', '#FFFF8C', '#FAB074', '#FAB074', '#CF7876', '#CF7876', '#925A98', '#925A98']
+                },
+                grid: {
+                    y: {
+                        lines: [{ value: 0 }]
+                    }
+                },
+                tooltip: {
+                    show: true,
+                    grouped: false
                 }
-            },
-            axis: {
-                x: {
-                    type: 'category'
-                }
-            },
-            color: {
-                pattern: ['#6da900', '#6da900', '#f2700d', '#f2700d', '#a90000', '#a90000']
-            },
-            grid: {
-                y: {
-                  lines: [{value:0}]
-                }
-            },
-            tooltip: {
-              show: true,
-              grouped: false
-            }
-        });
+            });
     </script>
   </body>
 </html>
