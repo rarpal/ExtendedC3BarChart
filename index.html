@@ -39,36 +39,36 @@
                 size: {width: 1500, height: 900},
                 data: {
                     json: [
-                        {RubGroup:	'Non-users'	,INRUB0:	13822	,OUTRUB0:	0	,INRUB1:	115	,OUTRUB1:	-8027	,INRUB2:	1	,OUTRUB2:	-1085	,INRUB3:	2	,OUTRUB3:	-3784	,INRUB4:	0	,OUTRUB4:	-706	,INRUB5:	0	,OUTRUB5:	-220},
-                        {RubGroup:	'Healthy'	,INRUB0:	8027	,OUTRUB0:	-115	,INRUB1:	3410	,OUTRUB1:	0	,INRUB2:	0	,OUTRUB2:	-613	,INRUB3:	4	,OUTRUB3:	-2174	,INRUB4:	0	,OUTRUB4:	-382	,INRUB5:	0	,OUTRUB5:	-126},
-                        {RubGroup:	'Low'	,INRUB0:	1085	,OUTRUB0:	-1	,INRUB1:	613	,OUTRUB1:	0	,INRUB2:	2876	,OUTRUB2:	0	,INRUB3:	56	,OUTRUB3:	-1970	,INRUB4:	0	,OUTRUB4:	-667	,INRUB5:	0	,OUTRUB5:	-238},
-                        {RubGroup:	'Moderate'	,INRUB0:	3784	,OUTRUB0:	-2	,INRUB1:	2174	,OUTRUB1:	-4	,INRUB2:	1970	,OUTRUB2:	-56	,INRUB3:	1423	,OUTRUB3:	0	,INRUB4:	4	,OUTRUB4:	-1048	,INRUB5:	0	,OUTRUB5:	-313},
-                        {RubGroup:	'High'	,INRUB0:	706	,OUTRUB0:	0	,INRUB1:	382	,OUTRUB1:	0	,INRUB2:	667	,OUTRUB2:	0	,INRUB3:	1048	,OUTRUB3:	-4	,INRUB4:	313	,OUTRUB4:	0	,INRUB5:	32	,OUTRUB5:	-309},
-                        {RubGroup:	'Very High'	,INRUB0:	220	,OUTRUB0:	0	,INRUB1:	126	,OUTRUB1:	0	,INRUB2:	238	,OUTRUB2:	0	,INRUB3:	313	,OUTRUB3:	0	,INRUB4:	309	,OUTRUB4:	-32	,INRUB5:	32	,OUTRUB5:	0}
+                        {HealthGroup:	'Non-users'	,INHG0:	13822	,OUTHG0:	0	,INHG1:	115	,OUTHG1:	-8027	,INHG2:	1	,OUTHG2:	-1085	,INHG3:	2	,OUTHG3:	-3784	,INHG4:	0	,OUTHG4:	-706	,INHG5:	0	,OUTHG5:	-220},
+                        {HealthGroup:	'Healthy'	,INHG0:	8027	,OUTHG0:	-115	,INHG1:	3410	,OUTHG1:	0	,INHG2:	0	,OUTHG2:	-613	,INHG3:	4	,OUTHG3:	-2174	,INHG4:	0	,OUTHG4:	-382	,INHG5:	0	,OUTHG5:	-126},
+                        {HealthGroup:	'Low'	,INHG0:	1085	,OUTHG0:	-1	,INHG1:	613	,OUTHG1:	0	,INHG2:	2876	,OUTHG2:	0	,INHG3:	56	,OUTHG3:	-1970	,INHG4:	0	,OUTHG4:	-667	,INHG5:	0	,OUTHG5:	-238},
+                        {HealthGroup:	'Moderate'	,INHG0:	3784	,OUTHG0:	-2	,INHG1:	2174	,OUTHG1:	-4	,INHG2:	1970	,OUTHG2:	-56	,INHG3:	1423	,OUTHG3:	0	,INHG4:	4	,OUTHG4:	-1048	,INHG5:	0	,OUTHG5:	-313},
+                        {HealthGroup:	'High'	,INHG0:	706	,OUTHG0:	0	,INHG1:	382	,OUTHG1:	0	,INHG2:	667	,OUTHG2:	0	,INHG3:	1048	,OUTHG3:	-4	,INHG4:	313	,OUTHG4:	0	,INHG5:	32	,OUTHG5:	-309},
+                        {HealthGroup:	'Very High'	,INHG0:	220	,OUTHG0:	0	,INHG1:	126	,OUTHG1:	0	,INHG2:	238	,OUTHG2:	0	,INHG3:	313	,OUTHG3:	0	,INHG4:	309	,OUTHG4:	-32	,INHG5:	32	,OUTHG5:	0}
                     ],
                     //json: eval(data.d),
                     keys: {
-                        x: 'RubGroup',
-                        value: ['INRUB0', 'OUTRUB0', 'INRUB1', 'OUTRUB1', 'INRUB2', 'OUTRUB2', 'INRUB3', 'OUTRUB3', 'INRUB4', 'OUTRUB4', 'INRUB5', 'OUTRUB5']
+                        x: 'HealthGroup',
+                        value: ['INHG0', 'OUTHG0', 'INHG1', 'OUTHG1', 'INHG2', 'OUTHG2', 'INHG3', 'OUTHG3', 'INHG4', 'OUTHG4', 'INHG5', 'OUTHG5']
                     },
                     type: 'bar',
-                    labels: true,
+                    labels: false,
                     groups: [
-                        ['INRUB0', 'OUTRUB0', 'INRUB1', 'OUTRUB1', 'INRUB2', 'OUTRUB2', 'INRUB3', 'OUTRUB3', 'INRUB4', 'OUTRUB4', 'INRUB5', 'OUTRUB5']
+                        ['INHG0', 'OUTHG0', 'INHG1', 'OUTHG1', 'INHG2', 'OUTHG2', 'INHG3', 'OUTHG3', 'INHG4', 'OUTHG4', 'INHG5', 'OUTHG5']
                     ],
                     names: {
-                        INRUB0: '+ Non-users',
-                        INRUB1: '+ Healthy',
-                        INRUB2: '+ Low',
-                        INRUB3: '+ Moderate',
-                        INRUB4: '+ High',
-                        INRUB5: '+ Very High',
-                        OUTRUB0: '- Non-users',
-                        OUTRUB1: '- Healthy',
-                        OUTRUB2: '- Low',
-                        OUTRUB3: '- Moderate',
-                        OUTRUB4: '- High',
-                        OUTRUB5: '- Very High',
+                        INHG0: '+ Non-users',
+                        INHG1: '+ Healthy',
+                        INHG2: '+ Low',
+                        INHG3: '+ Moderate',
+                        INHG4: '+ High',
+                        INHG5: '+ Very High',
+                        OUTHG0: '- Non-users',
+                        OUTHG1: '- Healthy',
+                        OUTHG2: '- Low',
+                        OUTHG3: '- Moderate',
+                        OUTHG4: '- High',
+                        OUTHG5: '- Very High',
                     },
                     selection: {
                         enabled: true,
@@ -80,10 +80,10 @@
                         if (rubid == d.index) {
                             return;
                         }
-                        var refid = (d.id.substring(0, 1) == "O" ? "INRUB" : "OUTRUB");
+                        var refid = (d.id.substring(0, 1) == "O" ? "INHG" : "OUTHG");
                         refid = refid + d.index;
                         var refindex = Number(d.id.substring(d.id.length - 1));
-                        if (Chart.selected(refid).length != 0) {
+                        if (Chart.selected(refid).length != 0 && Chart.selected(refid)[0].index == refindex) {
                             Chart.unselect([d.id], [d.index]);
                             Chart.unselect([refid], [refindex]);
                         } else {
@@ -108,6 +108,11 @@
                 tooltip: {
                     show: true,
                     grouped: false
+                },
+                zoom: {
+                    enabled: true,
+                    rescale: true,
+                    extend: [1, 10]
                 }
             });
     </script>
