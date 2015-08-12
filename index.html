@@ -22,16 +22,12 @@
             $$.config.data_onselected.call($$, d, target.node());
             target.transition().duration(100)
               .style({'stroke': 'black', 'stroke-width': 4, 'fill': function() {return $$.d3.rgb($$.color(d)).brighter(brightness);} });
-                //.style("fill", function () {
-                //  return $$.d3.rgb($$.color(d)).brighter(brightness);
-                //});
         };
         c3.chart.internal.fn.unselectPath = function (target, d) {
             var $$ = this;
             $$.config.data_onunselected.call($$, d, target.node());
             target.transition().duration(100)
               .style({'stroke': function () { return $$.color(d); }, 'stroke-width': 1, 'fill': function () { return $$.color(d); } });
-              //.style("fill", function () { return $$.color(d); });
         };
 
         var Chart = c3.generate({
@@ -46,7 +42,6 @@
                         {HealthGroup:	'High'	,INHG0:	706	,OUTHG0:	0	,INHG1:	382	,OUTHG1:	0	,INHG2:	667	,OUTHG2:	0	,INHG3:	1048	,OUTHG3:	-4	,INHG4:	313	,OUTHG4:	0	,INHG5:	32	,OUTHG5:	-309},
                         {HealthGroup:	'Very High'	,INHG0:	220	,OUTHG0:	0	,INHG1:	126	,OUTHG1:	0	,INHG2:	238	,OUTHG2:	0	,INHG3:	313	,OUTHG3:	0	,INHG4:	309	,OUTHG4:	-32	,INHG5:	32	,OUTHG5:	0}
                     ],
-                    //json: eval(data.d),
                     keys: {
                         x: 'HealthGroup',
                         value: ['INHG0', 'OUTHG0', 'INHG1', 'OUTHG1', 'INHG2', 'OUTHG2', 'INHG3', 'OUTHG3', 'INHG4', 'OUTHG4', 'INHG5', 'OUTHG5']
